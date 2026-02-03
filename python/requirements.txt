@@ -1,0 +1,12 @@
+# Linkt SDK Python Cookbook - Dependencies
+# Install: pip install -r requirements.txt
+
+# Core SDK
+linkt-sdk>=0.1.0
+
+# Environment management
+python-dotenv>=1.0.0
+
+# Optional: Enhanced async performance
+# Uncomment if using AsyncLinkt with aiohttp backend
+# linkt-sdk[aiohttp]>=0.1.0

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "linkt": {
+      "type": "http",
+      "url": "https://api-staging.linkt.ai/mcp",
+      "headers": {
+        "x-api-key": "${LINKT_API_KEY}"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      }
+    }
+  }
+}
