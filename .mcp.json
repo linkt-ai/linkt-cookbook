@@ -2,7 +2,7 @@
   "mcpServers": {
     "linkt": {
       "type": "http",
-      "url": "https://api-staging.linkt.ai/mcp",
+      "url": "https://api.linkt.ai/mcp",
       "headers": {
         "x-api-key": "${LINKT_API_KEY}"
       }

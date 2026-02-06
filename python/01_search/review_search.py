@@ -1,5 +1,5 @@
 """
-Linkt SDK - Review Discovery Results
+Linkt SDK - Review Search Results
 
 This script retrieves and displays the companies and contacts discovered
 by a completed search workflow.
@@ -9,16 +9,16 @@ Entities are fetched from the Entity API by ICP ID and entity type:
     - Contacts: client.entity.list(icp_id=..., entity_type="person")
 
 Usage:
-    python review_discovery.py <icp_id>
+    python review_search.py <icp_id>
 
 Example:
-    python review_discovery.py abc123-...
+    python review_search.py abc123-...
 
 Prerequisites:
     - LINKT_API_KEY environment variable set (via .env file or shell)
     - linkt-sdk package installed
-    - ICP ID from first_discovery.py output
-    - The discovery run must be COMPLETED (check with monitor_discovery.py)
+    - ICP ID from first_search.py output
+    - The discovery run must be COMPLETED (check with monitor_search.py)
 """
 
 import os
@@ -86,16 +86,16 @@ def get_linkedin_url(data, default="N/A"):
 
 
 def main():
-    """Retrieve and display discovery results from sheets."""
+    """Retrieve and display search results from sheets."""
 
     # =========================================================================
     # Parse Command Line Arguments
     # =========================================================================
     if len(sys.argv) != 2:
-        print("Usage: python review_discovery.py <icp_id>")
+        print("Usage: python review_search.py <icp_id>")
         print("\nExample:")
-        print("  python review_discovery.py abc123-...")
-        print("\nGet the ICP ID from first_discovery.py output.")
+        print("  python review_search.py abc123-...")
+        print("\nGet the ICP ID from first_search.py output.")
         sys.exit(1)
 
     icp_id = sys.argv[1]
@@ -115,7 +115,7 @@ def main():
         client = Linkt(environment=environment)
 
     print("=" * 60)
-    print("Linkt SDK - Discovery Results")
+    print("Linkt SDK - Search Results")
     print("=" * 60)
 
     # =========================================================================
@@ -208,15 +208,48 @@ def main():
         print()
 
     # =========================================================================
+    # Entity Status
+    # =========================================================================
+    # Each entity has a status field for tracking workflow progress:
+    #   - new: Newly discovered, not yet reviewed
+    #   - reviewed: Reviewed and qualified
+    #   - passed: Not a fit, disqualified
+    #   - contacted: Outreach initiated
+    #
+    # To update entity status:
+    #   client.entity.update(entity_id, status="reviewed")
+    #
+    # To bulk update status:
+    #   client.entity.bulk_update_status(entity_ids=[...], status="reviewed")
+
+    print("\n--- Status Summary ---\n")
+
+    # Count companies by status
+    status_counts = {}
+    for company in companies:
+        status = get_attr(company, "status", "new") or "new"
+        status_counts[status] = status_counts.get(status, 0) + 1
+
+    print("Companies by status:")
+    for status, count in sorted(status_counts.items()):
+        print(f"  {status}: {count}")
+
+    # =========================================================================
     # Summary
     # =========================================================================
-    print("=" * 60)
+    print("\n" + "=" * 60)
     print("Summary")
     print("=" * 60)
     print(f"\nTotal companies discovered: {total_companies}")
     print(f"Total contacts discovered:  {total_contacts}")
     print("\nView in dashboard:")
     print(f"  https://app.linkt.ai/icp/{icp_id}")
+
+    print("\nNext steps:")
+    print("  1. Update entity status:")
+    print(f"     python ../04_advanced/entity_status_workflow.py {icp_id}")
+    print("\n  2. Set up signal monitoring:")
+    print(f"     python ../03_signals/signals_from_sheet.py {icp_id}")
 
 
 if __name__ == "__main__":

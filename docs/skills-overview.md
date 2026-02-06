@@ -6,8 +6,11 @@ This cookbook includes Claude Code skills that demonstrate AI-powered GTM workfl
 
 | Skill | Command | Description |
 |-------|---------|-------------|
+| Linkt Init | `/linkt-init` | Set up your profile for personalized outreach |
 | Linkt Signals | `/linkt-signals` | Pull recent business signals and display contacts for outreach |
 | Linkt Outreach | `/linkt-outreach` | Draft and send LinkedIn connection requests based on signal context |
+| Linkt Schedule | `/linkt-schedule` | Manage recurring signal monitoring schedules |
+| Linkt Status | `/linkt-status` | Bulk update entity status for workflow management |
 
 ## Quick Start
 
@@ -59,7 +62,7 @@ Type `/linkt-signals` to pull recent signals and find contacts for outreach.
 
 ### 1. TechCorp Inc - AI Thought Leadership
 **Signal:** CEO published article on AI transformation
-**Strength:** Strong | **Detected:** Jan 28, 2026
+**Strength:** Strong | **Score:** 0.92 | **Detected:** Jan 28, 2026
 
 **Contacts:**
 1. Sarah Chen (VP Sales) - [LinkedIn](url)
@@ -68,9 +71,15 @@ Type `/linkt-signals` to pull recent signals and find contacts for outreach.
 Select a contact for outreach (1-2) or 'skip':
 ```
 
+**Signal Score:**
+Each signal includes a score field (0.0-1.0) for prioritization:
+- **0.8-1.0**: High priority - strong buying signals
+- **0.5-0.79**: Medium priority - worth monitoring
+- **0.0-0.49**: Lower priority - informational
+
 **Prerequisites:**
 - Linkt API key configured
-- Signal monitoring set up (see `python/02_monitor_leads/setup_signal_monitoring.py`)
+- Signal monitoring set up (see `python/03_signals/signals_from_sheet.py`)
 
 ### `/linkt-outreach`
 
@@ -104,6 +113,52 @@ Type 'send' to proceed, 'edit' to modify, or 'cancel':
 **Prerequisites:**
 - Linkt API key configured
 - Browser-use MCP configured (optional, for automation)
+
+### `/linkt-schedule`
+
+**Purpose:** Manage recurring schedules for automated signal monitoring.
+
+**What it does:**
+1. Lists existing schedules with status
+2. Creates new schedules (daily, weekly, monthly)
+3. Updates schedule frequency or status
+4. Deletes schedules
+
+**Example output:**
+```
+## Your Schedules
+
+| # | Name | Task | Frequency | Next Run | Status |
+|---|------|------|-----------|----------|--------|
+| 1 | Daily AI Signals | Signal Monitor: 50 companies | daily | Feb 6, 2026 09:00 | active |
+
+What would you like to do?
+1. Create new schedule
+2. Update schedule #1
+3. Delete schedule #1
+```
+
+### `/linkt-status`
+
+**Purpose:** Bulk update entity status for sales workflow management.
+
+**What it does:**
+1. Lists entities filtered by status
+2. Allows selection of multiple entities
+3. Updates status (new/reviewed/passed/contacted)
+4. Shows status summary
+
+**Example output:**
+```
+## Companies - New (25 total)
+
+| # | Company | Industry | Status |
+|---|---------|----------|--------|
+| 1 | TechCorp Inc | Software | new |
+| 2 | DataFlow Systems | Data | new |
+
+Select entities to update (1,2,3 or 1-5 or all):
+```
 
 ## Demo Walkthrough
 
@@ -154,7 +209,7 @@ Customize outreach message style:
 
 ### Adding New Signal Types
 
-The Linkt platform supports these signal types:
+The Linkt platform supports 17 signal types:
 - `funding` - Funding rounds
 - `leadership_change` - Executive changes
 - `layoff` - Workforce reductions
@@ -162,7 +217,14 @@ The Linkt platform supports these signal types:
 - `partnership` - Strategic partnerships
 - `acquisition` - M&A activity
 - `expansion` - Geographic/market expansion
+- `award` - Industry recognition
+- `pivot` - Strategic direction changes
+- `regulatory` - Compliance/regulatory news
+- `rfp` - Request for proposals
+- `contract_renewal` - Contract renewals
 - `hiring_surge` - Rapid hiring
+- `infrastructure` - Technology investments
+- `compliance` - Compliance updates
 - `job_posting` - Specific job postings
 - `other` - Custom signals (AI Initiatives, etc.)
 
@@ -176,15 +238,14 @@ To monitor specific types, update your signal monitoring task configuration.
 2. Check if signal monitoring is set up:
    ```bash
    cd python
-   python 01_getting_started/hello_world.py
+   python 01_search/first_search.py
    ```
 3. Run a monitoring task if needed
 
 ### Browser automation not working
 
 1. Check Browser-use MCP configuration in `.mcp.json`
-2. See `docs/browser-use-setup.md` for detailed setup
-3. The skill provides manual instructions as fallback
+2. The skill provides manual instructions as fallback
 
 ### LinkedIn rate limits
 
@@ -197,5 +258,4 @@ If LinkedIn restricts your account:
 
 - [Linkt Documentation](https://docs.linkt.ai)
 - [Linkt Python SDK](https://pypi.org/project/linkt-sdk/)
-- [Browser-use MCP Setup](browser-use-setup.md)
 - [Python Examples](../python/README.md)

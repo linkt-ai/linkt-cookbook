@@ -1,7 +1,7 @@
 """
-Linkt SDK - Monitor Discovery Progress
+Linkt SDK - Monitor Search Progress
 
-This script monitors a running discovery task and shows real-time progress
+This script monitors a running search task and shows real-time progress
 using the queue endpoint to see entities being processed.
 
 Features:
@@ -16,15 +16,15 @@ The queue endpoint provides visibility into:
     - discarded: Entities skipped (with reason)
 
 Usage:
-    python monitor_discovery.py <run_id>
+    python monitor_search.py <run_id>
 
 Example:
-    python monitor_discovery.py abc123-def456-...
+    python monitor_search.py abc123-def456-...
 
 Prerequisites:
     - LINKT_API_KEY environment variable set (via .env file or shell)
     - linkt-sdk package installed
-    - A run_id from first_discovery.py
+    - A run_id from first_search.py
 
 Note:
     Search operations typically take 15-20 minutes to complete.
@@ -177,16 +177,16 @@ def format_transition(transition):
 
 
 def main():
-    """Monitor a discovery run until completion."""
+    """Monitor a search run until completion."""
 
     # =========================================================================
     # Parse Command Line Arguments
     # =========================================================================
     if len(sys.argv) != 2:
-        print("Usage: python monitor_discovery.py <run_id>")
+        print("Usage: python monitor_search.py <run_id>")
         print("\nExample:")
-        print("  python monitor_discovery.py abc123-def456-...")
-        print("\nGet the run_id from first_discovery.py output.")
+        print("  python monitor_search.py abc123-def456-...")
+        print("\nGet the run_id from first_search.py output.")
         sys.exit(1)
 
     run_id = sys.argv[1]
@@ -206,7 +206,7 @@ def main():
         client = Linkt(environment=environment)
 
     print("=" * 70)
-    print("Linkt SDK - Monitor Discovery Progress")
+    print("Linkt SDK - Monitor Search Progress")
     print("=" * 70)
     print(f"\nMonitoring run: {run_id}")
     print(f"Polling every {POLL_INTERVAL_SECONDS} seconds...")
@@ -301,7 +301,7 @@ def main():
             print(f"\nTimeout after {MAX_WAIT_MINUTES} minutes.")
             print(f"Run {run_id} is still processing.")
             print("\nYou can re-run this script to continue monitoring:")
-            print(f"  python monitor_discovery.py {run_id}")
+            print(f"  python monitor_search.py {run_id}")
             sys.exit(0)
 
         time.sleep(POLL_INTERVAL_SECONDS)
@@ -312,7 +312,7 @@ def main():
     print("\n" + "=" * 70)
 
     if status == "COMPLETED":
-        print("Discovery Completed Successfully!")
+        print("Search Completed Successfully!")
         print("=" * 70)
 
         # Show final counts
@@ -335,9 +335,9 @@ def main():
                 print(f"\nRun time: {minutes}m {seconds}s")
 
         print("\nNext step - Review results:")
-        print("  python review_discovery.py <icp_id>")
+        print("  python review_search.py <icp_id>")
     else:
-        print(f"Discovery ended with status: {status}")
+        print(f"Search ended with status: {status}")
         print("=" * 70)
         error = get_attr(run, "error")
         if error:

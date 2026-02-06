@@ -32,21 +32,26 @@ claude
 
 | Command | Description |
 |---------|-------------|
+| `/linkt-init` | Set up your profile for personalized outreach |
 | `/linkt-signals` | Pull recent signals and find contacts for outreach |
 | `/linkt-outreach` | Draft personalized LinkedIn connection requests |
+| `/linkt-schedule` | Manage recurring signal monitoring schedules |
+| `/linkt-status` | Bulk update entity status for workflow management |
 
 **Demo flow:**
-1. Run `/linkt-signals` to see recent AI-focused signals
-2. Select a contact from the results
-3. Claude drafts a personalized connection message
-4. Review, edit, and send via LinkedIn
+1. Run `/linkt-init` to set up your profile
+2. Run `/linkt-signals` to see recent AI-focused signals (with scores)
+3. Select a contact from the results
+4. Claude drafts a personalized connection message
+5. Review, edit, and send via LinkedIn
+6. Use `/linkt-status` to mark entities as contacted
 
 For detailed skill documentation, see [docs/skills-overview.md](docs/skills-overview.md).
 
 ### Prerequisites for Skills
 
 - **Required:** Linkt API key
-- **Optional:** Browser-use MCP for LinkedIn automation ([setup guide](docs/browser-use-setup.md))
+- **Optional:** Browser-use MCP for LinkedIn automation
 
 ---
 
@@ -81,7 +86,7 @@ pip install -r requirements.txt
 ### 4. Run Your First Example
 
 ```bash
-python 01_getting_started/hello_world.py
+python 01_search/first_search.py
 ```
 
 ## Directory Structure
@@ -92,19 +97,19 @@ linkt-cookbook/
 ├── .claude/                    # Claude Code configuration
 │   ├── CLAUDE.md               # Project context
 │   └── skills/                 # Claude Code skills
+│       ├── linkt-init/         # Profile setup skill
 │       ├── linkt-signals/      # Signal monitoring skill
-│       └── linkt-outreach/     # LinkedIn outreach skill
+│       ├── linkt-outreach/     # LinkedIn outreach skill
+│       ├── linkt-schedule/     # Schedule management skill
+│       └── linkt-status/       # Entity status skill
 ├── docs/
-│   ├── skills-overview.md      # Skills documentation
-│   └── browser-use-setup.md    # Browser automation setup
+│   └── skills-overview.md      # Skills documentation
 ├── python/
 │   ├── requirements.txt        # Python dependencies
-│   ├── 01_getting_started/     # SDK setup and basic workflows
-│   ├── 02_monitor_leads/       # Signal monitoring setup
-│   ├── 02_search/              # Company and contact discovery
-│   ├── 03_ingest/              # CSV import and enrichment
-│   ├── 04_signals/             # Business signal monitoring
-│   └── 05_advanced/            # Custom fields, webhooks, async
+│   ├── 01_search/              # Company and contact discovery
+│   ├── 02_ingest/              # CSV import and enrichment
+│   ├── 03_signals/             # Signal sources and querying
+│   └── 04_advanced/            # Schedule management, bulk ops, export
 └── typescript/                 # TypeScript examples (coming soon)
 ```
 
@@ -112,11 +117,10 @@ linkt-cookbook/
 
 | Directory | Description | Examples |
 |-----------|-------------|----------|
-| `01_getting_started/` | Verify setup, learn core workflow | `hello_world.py`, `first_discovery.py` |
-| `02_search/` | Discover companies and contacts | Coming soon |
-| `03_ingest/` | Import and enrich your data | Coming soon |
-| `04_signals/` | Monitor accounts for business signals | Coming soon |
-| `05_advanced/` | Advanced patterns and integrations | Coming soon |
+| `01_search/` | Discover companies and contacts | `first_search.py`, `monitor_search.py`, `review_search.py`, `advanced_targeting.py`, `pagination_patterns.py` |
+| `02_ingest/` | Import and enrich your data | `csv_upload.py`, `csv_enrichment.py` |
+| `03_signals/` | Signal sources and querying | `signals_from_sheet.py`, `signals_from_csv.py`, `signals_from_topic.py`, `query_signals.py` |
+| `04_advanced/` | Schedule management, bulk operations | `schedule_management.py`, `bulk_operations.py`, `export_entities.py`, `entity_status_workflow.py` |
 
 ## Prerequisites
 

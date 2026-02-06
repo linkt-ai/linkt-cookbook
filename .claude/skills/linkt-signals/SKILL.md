@@ -19,7 +19,7 @@ Use `mcp__linkt__list_signals_v1_signal_get` to fetch signals:
 - Sort by: `detected_at` descending (most recent first)
 
 If no signals found, inform the user they may need to:
-1. Set up signal monitoring first (see `python/02_monitor_leads/setup_signal_monitoring.py`)
+1. Set up signal monitoring first (see `python/03_signals/signals_from_sheet.py`)
 2. Wait for the monitoring run to complete
 3. Check if the ICP has companies to monitor
 
@@ -55,7 +55,7 @@ Format output as follows:
 
 ### 1. [Company Name] - [Signal Type Display Name]
 **Signal:** [Summary from signal]
-**Strength:** [Strong/Moderate/Weak] | **Detected:** [Date]
+**Strength:** [Strong/Moderate/Weak] | **Score:** [0.85] | **Detected:** [Date]
 **Source:** [source_url if available]
 
 **Company:** [Industry] | [Employee Count] employees
@@ -93,6 +93,24 @@ Common signal types to highlight:
 - `product_launch` - New products
 - `partnership` - Strategic partnerships
 - `expansion` - Geographic or market expansion
+- `acquisition` - M&A activity
+- `layoff` - Workforce reductions
+- `award` - Industry recognition
+- `pivot` - Strategic direction change
+- `regulatory` - Compliance/regulatory news
+- `rfp` - Request for proposals
+- `contract_renewal` - Contract renewals
+- `infrastructure` - Technology investments
+- `compliance` - Compliance updates
+
+## Signal Score
+
+Each signal has a `score` field (0.0-1.0) indicating relevance/priority:
+- **0.8-1.0**: High priority signals - strong buying signals
+- **0.5-0.79**: Medium priority - worth monitoring
+- **0.0-0.49**: Lower priority - informational
+
+Display the score alongside strength for prioritization.
 
 ## Error Handling
 
@@ -111,7 +129,7 @@ Found 3 signals across 2 companies.
 
 ### 1. TechCorp Inc - AI Thought Leadership
 **Signal:** CEO published LinkedIn article on "How AI is Transforming Enterprise Sales"
-**Strength:** Strong | **Detected:** Jan 28, 2026
+**Strength:** Strong | **Score:** 0.92 | **Detected:** Jan 28, 2026
 **Source:** [LinkedIn Post](https://linkedin.com/posts/...)
 
 **Company:** Enterprise Software | 500-1000 employees
@@ -125,7 +143,7 @@ Leading provider of sales automation tools for mid-market companies.
 
 ### 2. DataFlow Systems - AI Job Postings
 **Signal:** Posted 5 AI/ML engineering roles in the past week
-**Strength:** Strong | **Detected:** Jan 27, 2026
+**Strength:** Strong | **Score:** 0.88 | **Detected:** Jan 27, 2026
 
 **Company:** Data Infrastructure | 200-500 employees
 Cloud-native data platform for real-time analytics.

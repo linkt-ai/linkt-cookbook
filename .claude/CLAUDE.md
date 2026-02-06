@@ -17,6 +17,8 @@ The cookbook demonstrates how to:
 | `/linkt-init` | Set up your profile for personalized outreach |
 | `/linkt-signals` | Pull recent signals and display contacts for outreach |
 | `/linkt-outreach` | Draft LinkedIn message and post to Slack for manual sending |
+| `/linkt-schedule` | Manage recurring signal monitoring schedules |
+| `/linkt-status` | Bulk update entity status for workflow management |
 
 ## Linkt MCP Tools
 
@@ -35,19 +37,26 @@ This project uses the Linkt MCP Server. Key tools available:
 - `mcp__linkt__list_icps_v1_icp_get` - List ICPs (discovery or monitoring)
 - `mcp__linkt__list_sheets_v1_sheet_get` - List sheets by ICP or entity type
 
+### Schedules
+- `mcp__linkt__create_schedule_v1_schedule_post` - Create recurring schedule
+- `mcp__linkt__list_schedules_v1_schedule_get` - List schedules
+- `mcp__linkt__get_schedule_v1_schedule` - Get schedule details
+- `mcp__linkt__update_schedule_v1_schedule` - Update schedule
+- `mcp__linkt__delete_schedule_v1_schedule` - Delete schedule
+
 ## Common Commands
 
 ```bash
 # Run Python examples
 cd python
 source .venv/bin/activate
-python 01_getting_started/hello_world.py
+python 01_search/first_search.py
 
 # Check API connectivity
-python 01_getting_started/hello_world.py
+python 01_search/first_search.py
 
 # Set up signal monitoring
-python 02_monitor_leads/setup_signal_monitoring.py <icp_id>
+python 03_signals/signals_from_sheet.py <icp_id>
 ```
 
 ## Environment Variables
@@ -87,4 +96,7 @@ This context is used by `/linkt-outreach` to draft more personalized LinkedIn co
 - All Python examples load `.env` from repository root
 - Entity types: `company`, `person`, `job_board`, `school_district`, `product`
 - Signal strengths: `strong`, `moderate`, `weak`
+- Signal `score` field: 0.0-1.0 numeric score for prioritization
 - Status values: `new`, `reviewed`, `passed`, `contacted`
+- Use `icp_ids` parameter (list) for multi-ICP filtering on signals and entities
+- Schedule frequencies: `daily`, `weekly`, `monthly`

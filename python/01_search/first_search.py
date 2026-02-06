@@ -1,5 +1,5 @@
 """
-Linkt SDK - Launch Discovery Workflow
+Linkt SDK - Launch Search Workflow
 
 This script creates all necessary resources and launches a search task.
 It returns immediately with the IDs needed for monitoring and retrieval.
@@ -9,18 +9,18 @@ Workflow:
     2. Create Sheets to store discovered companies and contacts
     3. Create a Search Task
     4. Execute the Task (async - returns immediately)
-    5. Output IDs for use with monitor_discovery.py and review_discovery.py
+    5. Output IDs for use with monitor_search.py and review_search.py
 
 Usage:
-    python first_discovery.py
+    python first_search.py
 
 Output:
     Prints run_id, company_sheet_id, and person_sheet_id which you'll need
     for the monitoring and review scripts.
 
 Next Steps:
-    1. Run: python monitor_discovery.py <run_id>
-    2. Once complete, run: python review_discovery.py <icp_id>
+    1. Run: python monitor_search.py <run_id>
+    2. Once complete, run: python review_search.py <icp_id>
 
 Prerequisites:
     - LINKT_API_KEY environment variable set (via .env file or shell)
@@ -79,10 +79,10 @@ Find contacts at the target companies who meet ALL of the following requirements
 
 
 def main():
-    """Launch the discovery workflow and output IDs for monitoring."""
+    """Launch the search workflow and output IDs for monitoring."""
 
     print("=" * 60)
-    print("Linkt SDK - Launch Discovery Workflow")
+    print("Linkt SDK - Launch Search Workflow")
     print("=" * 60)
 
     # =========================================================================
@@ -227,7 +227,7 @@ def main():
     # The search runs asynchronously and typically takes 15-20 minutes.
 
     print("\n" + "=" * 60)
-    print("Discovery Launched Successfully!")
+    print("Search Launched Successfully!")
     print("=" * 60)
 
     print("\nSave these IDs for the next steps:\n")
@@ -236,9 +236,9 @@ def main():
 
     print("\nNext steps:")
     print("  1. Monitor progress:")
-    print(f"     python monitor_discovery.py {execution.run_id}")
+    print(f"     python monitor_search.py {execution.run_id}")
     print("\n  2. Once complete, review results:")
-    print(f"     python review_discovery.py {icp.id}")
+    print(f"     python review_search.py {icp.id}")
 
     print("\nNote: Search operations typically take 15-20 minutes to complete.")
 

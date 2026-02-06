@@ -24,19 +24,17 @@ Practical examples for the Linkt Python SDK.
 
 4. Run your first example:
    ```bash
-   python 01_getting_started/hello_world.py
+   python 01_search/first_search.py
    ```
 
 ## Examples by Category
 
 | Directory | Description |
 |-----------|-------------|
-| `01_getting_started/` | SDK setup verification and basic workflows |
-| `02_monitor_leads/` | Signal monitoring for discovered companies |
-| `02_search/` | Company and contact discovery examples |
-| `03_ingest/` | CSV import and data enrichment |
-| `04_signals/` | Business signal monitoring |
-| `05_advanced/` | Custom fields, webhooks, async patterns |
+| `01_search/` | Company and contact discovery examples |
+| `02_ingest/` | CSV import and data enrichment |
+| `03_signals/` | Signal sources and querying |
+| `04_advanced/` | Schedule management, bulk operations, export |
 
 ## Requirements
 
