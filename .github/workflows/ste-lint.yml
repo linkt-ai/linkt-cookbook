@@ -1,0 +1,64 @@
+name: ste-lint
+
+# Simplified Technical English punctuation gate.
+#
+# The org writing standard bans the em dash and the en dash as sentence
+# punctuation in every AGENTS.md. See the Language section of the org-root
+# AGENTS.md in linkt-ai/master. This workflow is self-contained on purpose:
+# it carries the whole rule so no repository depends on another to run it.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ste-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: No em dash in any AGENTS.md
+        run: |
+          python3 - <<'PY'
+          import re, sys
+          from pathlib import Path
+
+          DASHES = "—–"  # em dash, en dash
+          QUOTED = re.compile(rf'[`"\']\s*[{DASHES}]\s*[`"\']')
+          KB_LINE = re.compile(r"ctl kb (read|search)")
+          SKIP_DIRS = {"node_modules", ".git", ".terraform", ".venv", "worktrees"}
+          GENERATED = [("<!-- BEGIN:nextjs-agent-rules -->",
+                        "<!-- END:nextjs-agent-rules -->")]
+
+          total = 0
+          files = [p for p in sorted(Path(".").rglob("AGENTS.md"))
+                   if not SKIP_DIRS.intersection(p.parts)]
+          for path in files:
+              closing = None
+              for number, line in enumerate(path.read_text(encoding="utf-8",
+                                                           errors="replace").splitlines(), 1):
+                  if closing is not None:
+                      if closing in line:
+                          closing = None
+                      continue
+                  opened = next((e for s, e in GENERATED if s in line), None)
+                  if opened is not None:
+                      closing = opened
+                      continue
+                  if KB_LINE.search(line):
+                      continue
+                  if any(d in QUOTED.sub("", line) for d in DASHES):
+                      print(f"{path}:{number}: em dash or en dash used as punctuation")
+                      print(f"    {line.strip()}")
+                      total += 1
+
+          if total:
+              print()
+              print(f"{total} violation(s) in {len(files)} file(s) scanned.")
+              print("Replace each dash with a full stop, a colon, a comma, or parentheses.")
+              print("Legal: a dash inside backticks or quotes, a ctl kb title, a generated block.")
+              sys.exit(1)
+          print(f"ste-lint: clean ({len(files)} file(s) scanned)")
+          PY
