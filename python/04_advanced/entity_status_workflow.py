@@ -19,7 +19,7 @@ Usage:
 Examples:
     python entity_status_workflow.py abc123
     python entity_status_workflow.py abc123 --status new
-    python entity_status_workflow.py abc123 --update entity_xyz789 --status reviewed
+    python entity_status_workflow.py abc123 --update entity_xyz789 --set-status reviewed
 
 Prerequisites:
     - LINKT_API_KEY environment variable set (via .env file or shell)
@@ -109,7 +109,7 @@ def main():
             sys.exit(1)
 
         # Get current entity
-        entity = client.entity.get(args.update)
+        entity = client.entity.retrieve(args.update)
         data = get_attr(entity, "data", {})
         name = get_field_display(data, "name", "Unknown")
         current_status = get_attr(entity, "status", "new")
