@@ -1,9 +1,12 @@
 ---
 name: linkt-init
-description: Set up your profile for personalized outreach. Run this first to configure your company info, role, and value proposition.
+description: Legacy V1 only. Set up your profile for personalized outreach. Run this first to configure your company info, role, and value proposition.
 user-invocable: true
 allowed-tools: AskUserQuestion, Read, Write, WebFetch, WebSearch
 ---
+
+**Legacy V1.** This skill uses deprecated V1 tools. Use it only for an existing V1 workflow. New integrations use the V2 HTTP/MCP guidance in `v2/README.md`.
+
 
 # Linkt Init Skill
 

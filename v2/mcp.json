@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "linkt": {
+      "type": "http",
+      "url": "https://api.linkt.ai/v2/mcp"
+    }
+  }
+}

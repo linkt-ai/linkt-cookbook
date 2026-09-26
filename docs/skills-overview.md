@@ -1,3 +1,8 @@
+# Legacy V1
+
+These instructions support existing V1 workflows. New integrations use `v2/README.md` and `v2/mcp.json`.
+The root `.mcp.json` connects the legacy tools used here. Do not apply these tool names to V2.
+
 # Claude Code Skills Overview
 
 This cookbook includes Claude Code skills that demonstrate AI-powered GTM workflows using the Linkt platform.

@@ -1,9 +1,12 @@
 ---
 name: linkt-status
-description: Bulk update entity status for workflow management. Use when user wants to mark leads as reviewed, passed, or contacted, or manage their sales pipeline status.
+description: Legacy V1 only. Bulk update entity status for workflow management. Use when user wants to mark leads as reviewed, passed, or contacted, or manage their sales pipeline status.
 user-invocable: true
 allowed-tools: mcp__linkt__list_entities_v1_entity_get, mcp__linkt__get_entity_v1_entity, mcp__linkt__update_entity_v1_entity, mcp__linkt__bulk_update_status_v1_entity_status_bulk_patch, mcp__linkt__list_icps_v1_icp_get, AskUserQuestion
 ---
+
+**Legacy V1.** This skill uses deprecated V1 tools. Use it only for an existing V1 workflow. New integrations use the V2 HTTP/MCP guidance in `v2/README.md`.
+
 
 # Linkt Status Skill
 

@@ -1,9 +1,12 @@
 ---
 name: linkt-outreach
-description: Draft a LinkedIn connection message and post to Slack for manual sending. Use after /linkt-signals when user wants to reach out to a contact, or when user provides a LinkedIn URL and context for outreach.
+description: Legacy V1 only. Draft a LinkedIn connection message and post to Slack for manual sending. Use after /linkt-signals when user wants to reach out to a contact, or when user provides a LinkedIn URL and context for outreach.
 user-invocable: true
 allowed-tools: mcp__linkt__get_entity_v1_entity, mcp__linkt__get_signal_v1_signal, AskUserQuestion, Read, mcp__slack__slack_post_message
 ---
+
+**Legacy V1.** This skill uses deprecated V1 tools. Use it only for an existing V1 workflow. New integrations use the V2 HTTP/MCP guidance in `v2/README.md`.
+
 
 # Linkt Outreach Skill
 
