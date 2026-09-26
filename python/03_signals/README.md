@@ -1,3 +1,8 @@
+# Legacy V1
+
+These examples target the deprecated V1 SDK. Existing versions remain available.
+New integrations use the [V2 HTTP examples](../../v2/README.md).
+
 # Signal Examples
 
 This directory contains examples for setting up signal monitoring from different sources and querying the results.

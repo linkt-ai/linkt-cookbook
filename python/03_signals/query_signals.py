@@ -1,3 +1,4 @@
+# Legacy V1: deprecated SDK example. New integrations use v2/run.py.
 """
 Linkt SDK - Query Signals
 

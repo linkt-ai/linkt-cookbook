@@ -1,0 +1,145 @@
+[
+  {
+    "id": "list-campaigns",
+    "mcp": {
+      "arguments": {
+        "limit": 5
+      },
+      "tool": "list_campaigns"
+    },
+    "method": "GET",
+    "operation": "list_campaigns",
+    "path": "/campaigns",
+    "query": {
+      "limit": 5
+    },
+    "readOnly": true
+  },
+  {
+    "body": {
+      "description": "Companies that need data integration software",
+      "entity_types": [
+        "company",
+        "person"
+      ],
+      "name": "Example campaign"
+    },
+    "id": "create-campaign",
+    "mcp": {
+      "arguments": {
+        "description": "Companies that need data integration software",
+        "entity_types": [
+          "company",
+          "person"
+        ],
+        "name": "Example campaign"
+      },
+      "tool": "create_campaign"
+    },
+    "method": "POST",
+    "operation": "create_campaign",
+    "path": "/campaigns",
+    "readOnly": false
+  },
+  {
+    "id": "list-accounts",
+    "mcp": {
+      "arguments": {
+        "limit": 5
+      },
+      "tool": "search_accounts"
+    },
+    "method": "GET",
+    "operation": "search_accounts",
+    "path": "/accounts",
+    "query": {
+      "limit": 5
+    },
+    "readOnly": true
+  },
+  {
+    "id": "list-people",
+    "mcp": {
+      "arguments": {
+        "limit": 5
+      },
+      "tool": "search_people"
+    },
+    "method": "GET",
+    "operation": "search_people",
+    "path": "/people",
+    "query": {
+      "limit": 5
+    },
+    "readOnly": true
+  },
+  {
+    "body": {
+      "ids": [
+        "0190a4e2-0000-7000-8000-000000000002"
+      ]
+    },
+    "id": "add-account",
+    "mcp": {
+      "arguments": {
+        "campaign_id": "0190a4e2-0000-7000-8000-000000000001",
+        "ids": [
+          "0190a4e2-0000-7000-8000-000000000002"
+        ]
+      },
+      "tool": "add_accounts_to_campaign"
+    },
+    "method": "POST",
+    "operation": "add_accounts_to_campaign",
+    "path": "/campaigns/{campaign_id}/accounts",
+    "pathParameters": {
+      "campaign_id": "0190a4e2-0000-7000-8000-000000000001"
+    },
+    "readOnly": false
+  },
+  {
+    "id": "list-signals",
+    "mcp": {
+      "arguments": {
+        "limit": 5
+      },
+      "tool": "list_signals"
+    },
+    "method": "GET",
+    "operation": "list_signals",
+    "path": "/signals",
+    "query": {
+      "limit": 5
+    },
+    "readOnly": true
+  },
+  {
+    "id": "list-monitors",
+    "method": "GET",
+    "operation": "list_monitors",
+    "path": "/campaigns/{campaign_id}/monitors",
+    "pathParameters": {
+      "campaign_id": "0190a4e2-0000-7000-8000-000000000001"
+    },
+    "query": {
+      "limit": 5
+    },
+    "readOnly": true
+  },
+  {
+    "id": "list-runs",
+    "mcp": {
+      "arguments": {
+        "limit": 5
+      },
+      "tool": "list_runs"
+    },
+    "method": "GET",
+    "operation": "list_runs",
+    "path": "/runs",
+    "query": {
+      "limit": 5
+    },
+    "readOnly": true
+  }
+]

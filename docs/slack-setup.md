@@ -1,3 +1,8 @@
+# Legacy V1
+
+These instructions support existing V1 workflows. New integrations use `v2/README.md` and `v2/mcp.json`.
+The root `.mcp.json` connects the legacy tools used here. Do not apply these tool names to V2.
+
 # Slack MCP Setup
 
 This guide covers setting up Slack MCP for the `/linkt-outreach` skill to post LinkedIn connection requests to a Slack channel.

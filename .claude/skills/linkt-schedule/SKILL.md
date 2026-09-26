@@ -1,9 +1,12 @@
 ---
 name: linkt-schedule
-description: Manage recurring signal monitoring schedules. Use when user wants to set up automated signal monitoring, create schedules, or manage existing schedules.
+description: Legacy V1 only. Manage recurring signal monitoring schedules. Use when user wants to set up automated signal monitoring, create schedules, or manage existing schedules.
 user-invocable: true
 allowed-tools: mcp__linkt__list_schedules_v1_schedule_get, mcp__linkt__create_schedule_v1_schedule_post, mcp__linkt__get_schedule_v1_schedule, mcp__linkt__update_schedule_v1_schedule, mcp__linkt__delete_schedule_v1_schedule, mcp__linkt__list_icps_v1_icp_get, mcp__linkt__list_tasks_v1_task_get, AskUserQuestion
 ---
+
+**Legacy V1.** This skill uses deprecated V1 tools. Use it only for an existing V1 workflow. New integrations use the V2 HTTP/MCP guidance in `v2/README.md`.
+
 
 # Linkt Schedule Skill
 

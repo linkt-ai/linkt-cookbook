@@ -37,7 +37,11 @@ Skills: `/linkt-init`, `/linkt-signals`, `/linkt-outreach`, `/linkt-schedule`,
 The root `CLAUDE.md` beside this file is the ordinary one-line `@AGENTS.md`
 bridge.
 
-## Constraints that already hold
+## V2 examples
+
+`v2/` contains direct HTTP examples and MCP setup. The backend candidate owns `v2/examples.json`; preserve its source and digest in `v2/source.json`. Validate with the wrapper content checker and local unittest suite. V2 uses campaign/account/person identifiers and its own schemas. Legacy vocabulary below applies only to the retained V1 examples and skills.
+
+## Legacy V1 constraints
 
 - **Every example loads `.env` from the repository root** and reads
   `LINKT_API_KEY`. Optional: `LINKT_API_ENVIRONMENT=staging`. Slack outreach also

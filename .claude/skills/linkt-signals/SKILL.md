@@ -1,9 +1,12 @@
 ---
 name: linkt-signals
-description: Pull recent signals from Linkt and display contacts for outreach. Use when user wants to see business signals, find leads to contact, or prepare for LinkedIn outreach.
+description: Legacy V1 only. Pull recent signals from Linkt and display contacts for outreach. Use when user wants to see business signals, find leads to contact, or prepare for LinkedIn outreach.
 user-invocable: true
 allowed-tools: mcp__linkt__list_signals_v1_signal_get, mcp__linkt__get_signal_v1_signal, mcp__linkt__list_entities_v1_entity_get, mcp__linkt__get_entity_v1_entity, mcp__linkt__list_icps_v1_icp_get
 ---
+
+**Legacy V1.** This skill uses deprecated V1 tools. Use it only for an existing V1 workflow. New integrations use the V2 HTTP/MCP guidance in `v2/README.md`.
+
 
 # Linkt Signals Skill
 
